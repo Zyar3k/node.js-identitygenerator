@@ -75,8 +75,39 @@ const lastNames = [
 
 people = [];
 
+const randChoice = arr => {
+    return arr[Math.floor(Math.random()*arr.length)];
+};
 
-fs.writeFile('people.json', data, (err) => {
+function PersonalData(gender, name, lastName, age) {
+    this.gender = gender;
+    this.name = name;
+    this.lastName = lastName;
+    this.age = age;
+};
+
+const personalDataPush = (personalData, name, lastName, age) => {
+    people.push(new PersonalData(personalData, name, lastName,age));
+};
+
+for (let i = 0; i < 20; i++) {
+    const gender = randChoice(genders);
+    const lastName = randChoice(lastNames);
+    const age = Math.floor(Math.random()*(78-18+1)+18);
+
+    let name;
+    if (genders === 'male') {
+        name = randChoice(maleNames);
+    } else {
+        name = randChoice(femaleNames);
+    }
+    
+    personalDataPush(gender, name, lastName, age)
+};
+
+const jsonPersonalData = JSON.stringify(people);
+
+fs.writeFile('people.json', jsonPersonalData, (err) => {
     if (err) throw err;
-    console.log('The file has been saved!');
+    console.log('File has been successfully generated! Check people.json');
   });
