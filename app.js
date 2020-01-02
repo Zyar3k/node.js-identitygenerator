@@ -96,7 +96,7 @@ for (let i = 0; i < 20; i++) {
     const age = Math.floor(Math.random()*(78-18+1)+18);
 
     let name;
-    if (genders === 'male') {
+    if (gender === 'male') {
         name = randChoice(maleNames);
     } else {
         name = randChoice(femaleNames);
